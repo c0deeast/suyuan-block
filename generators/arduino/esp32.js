@@ -21,7 +21,18 @@
 goog.provide('Blockly.Arduino.esp32');
 
 goog.require('Blockly.Arduino');
-
+//新增舵头移动函数
+Blockly.Arduino['arduino_pin_esp32SetSCServo'] = function(block) {
+  //分别去获取输入的值
+  var arg0 = Blockly.Arduino.valueToCode(block, 'STEERINGID', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
+  var arg1 = Blockly.Arduino.valueToCode(block, 'POSITION', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
+  var arg2 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
+  //添加引用
+  Blockly.Arduino.includes_['esp32SetSCServo'] = '#include <SCServo.h>';
+  Blockly.Arduino.definitions_['esp32SetSCServo'] = 'SMS_STS sms_sts';
+  //返回值
+  return `sms_sts.RegWritePosEx(${arg0},${arg1},${arg2},50);\nsms_sts.RegWriteAction();\n`
+};
 
 Blockly.Arduino['arduino_pin_esp32SetPwmOutput'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';

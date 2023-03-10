@@ -30,3 +30,10 @@ Blockly.Arduino['event_whenarduinobegin'] = function() {
   return code;
 };
 
+Blockly.Arduino['event_whenesp32begin'] = function() {
+    Blockly.Arduino.includes_["arduino"] = "#include <Esp32.h>";
+  
+    var code = "";
+    return code;
+  };
+  
