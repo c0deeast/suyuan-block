@@ -44,6 +44,24 @@ Blockly.Blocks['event_whenarduinobegin'] = {
   }
 };
 
+Blockly.Blocks['event_whenesp32begin'] = {
+    /**
+     * Block for when esp32 begin.
+     * @this Blockly.Block
+     */
+    init: function() {
+      this.jsonInit({
+        "id": "event_whenesp32begin",
+        "message0": Blockly.Msg.EVENT_WHENESP32BEGIN,
+        "nextStatement": null,
+        "category": Blockly.Categories.event,
+        "colour": Blockly.Colours.event.primary,
+        "colourSecondary": Blockly.Colours.event.secondary,
+        "colourTertiary": Blockly.Colours.event.tertiary
+      });
+    }
+  };
+
 Blockly.Blocks['event_whenmicropythonbegin'] = {
   /**
    * Block for when arduino begin.

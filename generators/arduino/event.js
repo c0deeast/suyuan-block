@@ -23,17 +23,17 @@ goog.provide('Blockly.Arduino.event');
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino['event_whenarduinobegin'] = function() {
-  Blockly.Arduino.includes_["arduino"] = "#include <Arduino.h>";
+Blockly.Arduino['event_whenarduinobegin'] = function () {
+    Blockly.Arduino.includes_["arduino"] = "#include <Arduino.h>";
 
-  var code = "";
-  return code;
-};
-
-Blockly.Arduino['event_whenesp32begin'] = function() {
-    Blockly.Arduino.includes_["arduino"] = "#include <Esp32.h>";
-  
     var code = "";
     return code;
-  };
-  
+};
+
+Blockly.Arduino['event_whenesp32begin'] = function () {
+    Blockly.Arduino.includes_["arduino"] = "#include <Esp32.h>";
+
+    var code = "";
+    return code;
+};
+
