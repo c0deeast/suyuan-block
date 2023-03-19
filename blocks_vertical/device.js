@@ -44,15 +44,15 @@ Blockly.Blocks['event_whenarduinobegin'] = {
   }
 };
 
-Blockly.Blocks['event_whenesp32begin'] = {
+Blockly.Blocks['event_whenrobotbegin'] = {
     /**
-     * Block for when esp32 begin.
+     * Block for when robot begin.
      * @this Blockly.Block
      */
     init: function() {
       this.jsonInit({
-        "id": "event_whenesp32begin",
-        "message0": Blockly.Msg.EVENT_WHENESP32BEGIN,
+        "id": "event_whenrobotbegin",
+        "message0": Blockly.Msg.EVENT_WHENROBOTBEGIN,
         "nextStatement": null,
         "category": Blockly.Categories.event,
         "colour": Blockly.Colours.event.primary,

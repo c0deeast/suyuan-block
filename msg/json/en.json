@@ -39,7 +39,7 @@
     "DATA_INDEX_LAST": "last",
     "DATA_INDEX_RANDOM": "random",
     "EVENT_WHENARDUINOBEGIN": "when Arduino begin",
-    "EVENT_WHENESP32BEGIN": "when Esp32 begin",
+    "EVENT_WHENROBOTBEGIN": "when Robot begin",
     "EVENT_WHENMICROPYTHONBEGIN": "when MicroPython begin",
     "EVENT_WHENMICROBITBEGIN": "when Microbit begin",
     "EVENT_WHENMICROBITBUTTONPRESSED": "when button %1 pressed",

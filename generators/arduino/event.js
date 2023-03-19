@@ -30,8 +30,8 @@ Blockly.Arduino['event_whenarduinobegin'] = function () {
     return code;
 };
 
-Blockly.Arduino['event_whenesp32begin'] = function () {
-    Blockly.Arduino.includes_["arduino"] = "#include <Esp32.h>";
+Blockly.Arduino['event_whenrobotbegin'] = function () {
+    Blockly.Arduino.includes_["arduino"] = "#include <robot.h>";
 
     var code = "";
     return code;
