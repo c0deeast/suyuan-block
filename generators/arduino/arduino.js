@@ -96,7 +96,6 @@ Blockly.Arduino['arduino_pin_detachInterrupt'] = function(block) {
 
 Blockly.Arduino['arduino_serial_serialBegin'] = function(block) {
   var arg0 = block.getFieldValue('VALUE') || '9600';
-
   var code = 'Serial.begin(' + arg0 + ');\n';
   return code;
 };
