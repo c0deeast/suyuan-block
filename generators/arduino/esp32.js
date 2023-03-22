@@ -27,10 +27,6 @@ Blockly.Arduino['arduino_robot_steeringGearConfig'] = function (block) {
     var arg0 = block.getFieldValue('JOINT') || '0';
     var arg1 = Blockly.Arduino.valueToCode(block, 'ANGLE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
     var arg2 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    // //添加引用
-    // Blockly.Arduino.includes_['esp32SetSCServo'] = '#include <SCServo.h>';
-    // Blockly.Arduino.definitions_['esp32SetSCServo'] = 'SMS_STS sms_sts';
-    //返回值
     return `sySetServoAngle(${arg0},${arg1},${arg2})\n`
 };
 
@@ -56,7 +52,8 @@ Blockly.Arduino['arduino_robot_setGripper'] = function (block) {
 //串口
 Blockly.Arduino['arduino_serial_esp32SerialBegin'] = function (block) {
     var arg0 = block.getFieldValue('VALUE') || '9600';
-    var code = 'Serial.begin(' + arg0 + ');\nsms_sts.pSerial = &Serial2;// sts舵机\n';
+    var arg1 = block.getFieldValue('NO') || 0;
+    var code = 'Serial' + arg1 + '.begin(' + arg0 + ');\nsms_sts.pSerial = &Serial2;// sts舵机\n';
     return code;
 };
 
