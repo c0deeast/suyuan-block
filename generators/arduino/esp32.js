@@ -21,39 +21,98 @@
 goog.provide('Blockly.Arduino.esp32');
 
 goog.require('Blockly.Arduino');
-//机器人config
+
+/**
+ * 去除字符串收尾的括号
+ * @param {String} str
+ * @returns {String} 
+ * 
+ * 例如：(-100) => -100
+ */
+const removeBrackets = (str) => {
+    if (str[0] === "(" && str[str.length - 1] === ")") {
+        return str.slice(1, str.length - 1)
+    } else {
+        return str
+    }
+}
+
+//单个舵机
 Blockly.Arduino['arduino_robot_steeringGearConfig'] = function (block) {
     //分别去获取输入的值
     var arg0 = block.getFieldValue('JOINT') || '0';
-    var arg1 = Blockly.Arduino.valueToCode(block, 'ANGLE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
+    var arg1 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
     var arg2 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    return `sySetServoAngle(${arg0},${arg1},${arg2})\n`
+    return `sy.sySetServoAngle(${arg0},${arg1},${arg2});\n`
 };
 
 //全关节函数
 Blockly.Arduino['arduino_robot_setServoPosAll'] = function (block) {
-    var arg0 = Blockly.Arduino.valueToCode(block, 'ANGLE1', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    var arg1 = Blockly.Arduino.valueToCode(block, 'ANGLE2', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    var arg2 = Blockly.Arduino.valueToCode(block, 'ANGLE3', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    var arg3 = Blockly.Arduino.valueToCode(block, 'ANGLE4', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    var arg4 = Blockly.Arduino.valueToCode(block, 'ANGLE5', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    var arg5 = Blockly.Arduino.valueToCode(block, 'ANGLE6', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    var arg6 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    return `sySetServoPosAll(${arg0},${arg1},${arg2},${arg3},${arg4},${arg5},${arg6})\n`;
+
+    var arg0 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE1', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg1 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE2', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg2 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE3', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg3 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE4', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg4 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE5', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg5 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE6', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg6 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0";
+    return `sy.sySetServoPosAll(${arg0},${arg1},${arg2},${arg3},${arg4},${arg5},${arg6});\n`;
 };
 
 //夹爪函数
 Blockly.Arduino['arduino_robot_setGripper'] = function (block) {
-    var arg1 = Blockly.Arduino.valueToCode(block, 'ANGLE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
+    var arg1 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
     var arg2 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-    return `sySetGripperAngle(${arg1},${arg2})\n`
+    return `sy.sySetGripperAngle(${arg1},${arg2});\n`
+};
+
+//夹爪状态控制和速度
+Blockly.Arduino['arduino_robot_setGripperStatus'] = function (block) {
+    var arg1 = block.getFieldValue('STATUS') || '0';
+    var arg2 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
+    return `sy.sySetGripperStatus(${arg1},${arg2});\n`
+};
+
+//夹爪状态控制以默认速度运行
+Blockly.Arduino['arduino_robot_setGripperStatusDefault'] = function (block) {
+    var arg1 = block.getFieldValue('STATUS') || '0';
+    return `sy.sySetGripperStatus(${arg1});\n`
+};
+
+//坐标积木块
+Blockly.Arduino['arduino_robot_setAllCoordinates'] = function (block) {
+
+    var arg0 = removeBrackets(Blockly.Arduino.valueToCode(block, 'X', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg1 = removeBrackets(Blockly.Arduino.valueToCode(block, 'Y', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg2 = removeBrackets(Blockly.Arduino.valueToCode(block, 'Z', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg3 = removeBrackets(Blockly.Arduino.valueToCode(block, 'RX', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg4 = removeBrackets(Blockly.Arduino.valueToCode(block, 'RY', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg5 = removeBrackets(Blockly.Arduino.valueToCode(block, 'RZ', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
+    var arg6 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0";
+    var arg7 = block.getFieldValue('MODE') || '0';
+    return `sy.sySetCoords(${arg0},${arg1},${arg2},${arg3},${arg4},${arg5},${arg6},${arg7});\n`;
+};
+
+//获取所有角度
+Blockly.Arduino['arduino_robot_getAllAngle'] = function (block) {
+    return `sy.syGetServoAngleAll();\n`
+};
+
+//获取所以坐标
+Blockly.Arduino['arduino_robot_getAllCoordinates'] = function (block) {
+    return `sy.syGetServoCoordAll();\n`
 };
 
 //串口
 Blockly.Arduino['arduino_serial_esp32SerialBegin'] = function (block) {
     var arg0 = block.getFieldValue('VALUE') || '9600';
     var arg1 = block.getFieldValue('NO') || 0;
-    var code = 'Serial' + arg1 + '.begin(' + arg0 + ');\nsms_sts.pSerial = &Serial2;// sts舵机\n';
+    var code;
+    if (arg1 == 0) {
+        code = 'Serial.begin(' + arg0 + ');\nsy_Robot.pSerial = &Serial;// sts舵机\n';
+    } else {
+        code = 'Serial' + arg1 + '.begin(' + arg0 + ');\nsy_Robot.pSerial = &Serial2;// sts舵机\n';
+    }
     return code;
 };
 

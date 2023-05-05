@@ -163,16 +163,41 @@ Blockly.Blocks['math_0to100_number'] = {
   }
 };
 
+// 0-500
+Blockly.Blocks['math_0to500_number'] = {
+    init: function() {
+      this.jsonInit({
+        "message0": "%1",
+        "args0": [
+          {
+            "type": "field_slider",
+            "name": "NUM",
+            "value": "0",
+            "min": "0",
+            "max": "500"
+          }
+        ],
+        "output": "Number",
+        "outputShape": Blockly.OUTPUT_SHAPE_ROUND,
+        "colour": Blockly.Colours.textField,
+        "colourSecondary": Blockly.Colours.textField,
+        "colourTertiary": Blockly.Colours.textField
+      });
+    }
+  };
+
+//负角度实现
 Blockly.Blocks['math_half_angle'] = {
   init: function() {
     this.jsonInit({
       "message0": "%1",
       "args0": [
         {
-          "type": "field_angle",
+          "type": "field_slider",
           "name": "NUM",
-          "value": 90,
-          "max": 180
+          "value": "0",
+          "min": "-180",
+          "max": "180"
         }
       ],
       "output": "Number",
