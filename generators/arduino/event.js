@@ -31,9 +31,9 @@ Blockly.Arduino['event_whenarduinobegin'] = function () {
 };
 
 Blockly.Arduino['event_whenrobotbegin'] = function () {
-    Blockly.Arduino.includes_["arduino"] = "#include <robot.h>\nsyRobot sy;";
+    Blockly.Arduino.includes_["arduino"] = "#include <syrobot.h>";
 
-    var code = "";
+    var code = "sy.begin();\n";
     return code;
 };
 

@@ -56,7 +56,7 @@ Blockly.Arduino['arduino_robot_setServoPosAll'] = function (block) {
     var arg4 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE5', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
     var arg5 = removeBrackets(Blockly.Arduino.valueToCode(block, 'ANGLE6', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0");
     var arg6 = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_UNARY_POSTFIX) || "0";
-    return `sy.sySetServoPosAll(${arg0},${arg1},${arg2},${arg3},${arg4},${arg5},${arg6});\n`;
+    return `sy.sySetServoAngleAll(${arg0},${arg1},${arg2},${arg3},${arg4},${arg5},${arg6});\n`;
 };
 
 //夹爪函数
@@ -104,17 +104,17 @@ Blockly.Arduino['arduino_robot_getAllCoordinates'] = function (block) {
 };
 
 //串口
-Blockly.Arduino['arduino_serial_esp32SerialBegin'] = function (block) {
-    var arg0 = block.getFieldValue('VALUE') || '9600';
-    var arg1 = block.getFieldValue('NO') || 0;
-    var code;
-    if (arg1 == 0) {
-        code = 'Serial.begin(' + arg0 + ');\nsy_Robot.pSerial = &Serial;// sts舵机\n';
-    } else {
-        code = 'Serial' + arg1 + '.begin(' + arg0 + ');\nsy_Robot.pSerial = &Serial2;// sts舵机\n';
-    }
-    return code;
-};
+// Blockly.Arduino['arduino_serial_esp32SerialBegin'] = function (block) {
+//     var arg0 = block.getFieldValue('VALUE') || '9600';
+//     var arg1 = block.getFieldValue('NO') || 0;
+//     var code;
+//     if (arg1 == 0) {
+//         code = 'Serial.begin(' + arg0 + ');// sts舵机\n';
+//     } else {
+//         code = 'Serial' + arg1 + '.begin(' + arg0 + ');// sts舵机\n';
+//     }
+//     return code;
+// };
 
 //新增舵头移动函数
 Blockly.Arduino['arduino_pin_esp32SetSCServo'] = function (block) {
