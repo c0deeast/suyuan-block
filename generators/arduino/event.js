@@ -32,7 +32,7 @@ Blockly.Arduino['event_whenarduinobegin'] = function () {
 
 Blockly.Arduino['event_whenrobotbegin'] = function () {
     Blockly.Arduino.includes_["arduino"] = "#include <syrobot.h>";
-
+    Blockly.Arduino.loops_['whenrobotbegin'] = "sy.syDataUpdate();\n";
     var code = "sy.begin();\n";
     return code;
 };

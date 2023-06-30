@@ -210,7 +210,7 @@ Blockly.Arduino.finish = function(code) {
   if (Blockly.Arduino.firstLoop) {
     ret += "\nvoid loop() {\n" + Blockly.Arduino.INDENT + "repeat();\n}\n";
   }
-
+  console.log("Blockly.Arduino",Blockly.Arduino)
   // repeat()
   // if has loops_ code, add the repeat() function to place it.
   if (loops.length != 0) {
